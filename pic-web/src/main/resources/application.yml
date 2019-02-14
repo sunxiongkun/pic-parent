@@ -1,0 +1,56 @@
+# ===============================
+# = JPA / HIBERNATE
+# ===============================
+# Show or not log for each sql query
+# Hibernate ddl auto (create, create-drop, update): with "create-drop" the database
+# schema will be automatically created afresh for every start of application
+# to allow for lazy loading in web views
+#spring.jpa.open-in-view=false
+
+spring:
+  datasource:
+    #url: jdbc:derby:D:/db/derby/data/pic-web;create=true
+    url: jdbc:derby:D:/db/derby/data/pic-web
+    username: stn
+    password: stn
+    driver-class-name: org.apache.derby.jdbc.EmbeddedDriver
+    continue-on-error: false
+    generate-unique-name: false
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.DerbyDialect
+  mvc:
+    static-path-pattern: /static/**
+    view:
+      suffix: .html
+  thymeleaf:
+    cache: false # 开发时关闭缓存,不然没法看到实时页面
+    #encoding: UTF-8
+    suffix: .html
+    servlet:
+      content-type: text/html
+
+
+
+
+---
+spring:
+  profiles: test
+  devtools:
+    restart:
+      exclude: /resources/**,static/**,/templates/**,**/*Test.class # Patterns that should be excluded from triggering a full restart.
+
+---
+spring:
+  profiles: master
+  datasource:
+    url: jdbc:derby://127.0.0.1:1527/pic-web
+    username: stn
+    password: stn
+    driver-class-name: org.apache.derby.jdbc.ClientDriver
+    continue-on-error: false
+    generate-unique-name: false

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+  <meta charset="UTF-8"/>
+  <title>4K风景壁纸_高清4K风景图片</title>
+  <meta name="keywords" content="4k风景壁纸,高清4k风景壁纸,4k风景图片,4k风景电脑壁纸,4k风景桌面壁纸"/>
+  <meta name="description" content="免费提供清新唯美的4k风景图片壁纸下载,把高清的4k风景图片壁纸推荐给您,让您更快的找到您想要的4k风景壁纸图片"/>
+  <link href="/static/css/style.css" rel="stylesheet" type="text/css"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="referrer" content="no-referrer"/>
+  <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+  <script type="text/javascript" src="/static/js/common.js"></script>
+</head>
+<body>
+<div class="header">
+  <div class="head">
+    <a href="/" class="logo" title="4k壁纸">首页</a>
+    <ul class="nav">
+      <li><a href="@{/pic/page/1/1.html}" class="nav-link" rel="nofollow">最新</a></li>
+      <li><a href="javascript:;" class="nav-link">分类</a>
+        <div class="nav-m clearfix tran">
+          <a th:href="@{'/pic/page/'+${cate.code}+'/1.html'}"
+             th:each="cate :${categories}"
+             th:text="${cate.name}" th:class="${cate.code == category}? 'curr' :'' "></a>
+        </div>
+      </li>
+      <li><a href="javascript:;" class="nav-link">尺寸</a>
+        <div class="nav-m clearfix tran"><a
+            href="@{/pic/page/1/1.html}?searchid=1224">4K壁纸</a><a
+            href="@{/pic/page/1/1.html}?searchid=1224">3840x2160壁纸</a><a
+            href="@{/pic/page/1/1.html}?searchid=2446">带鱼屏壁纸</a><a
+            href="@{/pic/page/1/1.html}?searchid=2446">3440x1440壁纸</a><a
+            href="@{/pic/page/1/1.html}?searchid=2453">5K壁纸</a><a
+            href="@{/pic/page/1/1.html}?searchid=2453">5120x2880壁纸</a><a
+            href="@{/pic/page/1/1.html}?searchid=2543">8K壁纸</a><a
+            href="@{/pic/page/1/1.html}?searchid=2543">7680x4320壁纸</a><a
+            href="@{/pic/page/1/1.html}">手机壁纸</a>
+          <a href="@{/pic/page/1/1.html}?1920x1080" target="_blank">1920x1080壁纸</a></div>
+      </li>
+      <li><a href="@{/pic/page/1/1.html}" class="nav-link pc-click">4K风景</a></li>
+      <li><a href="@{/pic/page/1/1.html}" class="nav-link" rel="nofollow">4K背景</a></li>
+      <li><a href="http://pic.netbian.com/vip.html" class="nav-link" rel="nofollow"
+             style="color:#FFA800; target=_blank">1元会员</a></li>
+    </ul>
+    <div class="search">
+      <form action="/pic/page.html" method="post" name="schform" id="schform">
+        <p><input type="text" name="keyboard" value="请输入壁纸名称"
+                  onFocus="if(this.value=='请输入壁纸名称') this.value='';"
+                  onBlur="if(this.value=='') this.value='请输入壁纸名称';" autocomplete="off"/></p>
+        <input name="submit" type="submit" value="" class="sub"/><input name="tempid" type="hidden"
+                                                                        value="1"/><input
+          name="tbname" type="hidden" value="photo"/><input name="show" type="hidden"
+                                                            value="title"/>
+      </form>
+    </div>
+    <div class="loginbar">
+      <a class="register" style="width:100px;">注册</a> <a class="in">登录</a>
+      <div class="tbox">
+        <div class="close">×</div>
+        <a href="/" id="logo"></a>
+        <div id="tips">
+          <div class="hline fl"></div>
+          <div class="tiptext fl">欢迎您登陆4k网</div>
+          <div class="hline fr"></div>
+        </div>
+        <a href="/user/memberconnect/?apptype=qq" id="qq_register">QQ一键登陆</a>
+        <!--a href="/e/memberconnect/?apptype=weixin" id="weixin_register">微信扫一扫登录</a--></div>
+      <div id="login_opacity_bg"></div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap clearfix">
+  <div id="main">
+    <div class="loaction"><span>当前位置：<a href="/">首页</a> > <h1
+        style="display: inline;font-weight: normal;">4K风景图片</h1></span></div>
+    <div class="classify clearfix">
+      <a th:href="@{'/pic/page/'+${cate.code}+'/1.html'}"
+         th:each="cate :${categories}"
+         th:text="${cate.name}" th:class="${cate.code == category}? 'curr' :'' "></a>
+    </div>
+    <div class="slist">
+      <ul class="clearfix">
+        <li th:each="pic : ${page.content}">
+          <a href="/tupian/22882.html" target="_blank">
+            <img th:src="${pic.netUrl +'?'+ new java.util.Date().getTime()}"
+                 th:alt="${pic.description}"/>
+            <b><span th:text="${pic.name}"/></b>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="page">
+      <!--<a class="allpage"><b th:text="'共 '+ ${page.pages}+ ' 页'"></b></a>
+      <a th:if="${page.hasPreviousPage} == true" th:href="@{'index?currentPage=' + ${page.prePage}}"  >上一页</a>
+      <a th:href="@{'index?currentPage=' + ${i}}"  th:each="i :${#numbers.sequence(page.startPage, page.endPage)}" th:text="${i}"  th:class="${page.pageNum == i}? 'curPage' :'' "></a>
+      <a th:href="@{'index?currentPage=' + ${page.nextPage}}" th:if="${page.hasNextPage} == true">下一页</a>
+      <a th:href="@{'index?currentPage='+ ${page.pages}}" >尾页</a>-->
+
+      <a th:href="@{/pic/page.html}">首页</a>
+      <a th:if="${not page.isFirst()}"
+         th:href="@{'/pic/page/'+${category}+'/'+${page.number-1}+'.html'}">上一页</a>
+      <!--<a th:href="@{'/pic/page/'+${i}+'.html'}"  th:each="i :${#numbers.sequence(page.startPage, page.endPage)}" th:text="${i}"  th:class="${page.number == i}? 'curPage' :'' "></a>-->
+      <b th:text="${page.number}"></b>
+      <span class="slh">…</span>
+      <a th:href="@{'/pic/page/'+${category}+'/'+${page.totalPages-1}+'.html'}"
+         th:text="${page.totalPages-1}"></a>
+      <a th:if="${not page.isLast()}"
+         th:href="@{'/pic/page/'+${category}+'/'+${page.number+1}+'.html'}">下一页</a>
+
+    </div>
+
+  </div>
+</div>
+<div id="footer">
+  <div class="w"><p>为用户免费分享产生,若发现您的权利被侵害,我们尽快处理 客服QQ:55346968 <a target="_blank"
+                                                                 href="http://wpa.qq.com/msgrd?v=3&uin=55346968&site=qq&menu=yes"><img
+      border="0" src="http://wpa.qq.com/pa?p=2:55346968:51" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>（工作时间：9:00-23:00）4K壁纸QQ群（427389122）
+  </p>
+    <p>Copyright &copy; 2019 <span class="sitename"><a href="http://pic.netbian.com/" title=""></a></span>
+      闽ICP备13013111号 <a href="http://www.netbian.com/" target="_blank" title="壁纸">壁纸</a> <a
+          href="http://pic.netbian.com/" title="4k">4k</a> <a href="http://pic.netbian.com/"
+                                                              title="4k壁纸">4k壁纸</a> <a
+          href="http://pic.netbian.com/" target="_blank" title="壁纸">壁纸</a> <a
+          href="http://pic.netbian.com/" target="_blank" title="高清壁纸">高清壁纸</a> 关注:<a
+          href="http://weibo.com/netbiancom" target="_blank">新浪微博</a>
+    </p>
+  </div>
+</div>
+<div id="gotop"><a href="javascript:;" class="got"><i>返回顶部</i></a></div>
+</body>
+</html>
