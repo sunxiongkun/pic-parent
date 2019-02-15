@@ -33,7 +33,20 @@ spring:
     suffix: .html
     servlet:
       content-type: text/html
+  boot:
+    admin:
+      client:
+        url: http://localhost:8080
 
+### spring actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: ALWAYS
 
 
 
