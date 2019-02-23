@@ -37,6 +37,9 @@ spring:
     admin:
       client:
         url: http://localhost:8080
+pic:
+  web:
+    imageRootPath: /www/pic/
 
 ### spring actuator
 management:
