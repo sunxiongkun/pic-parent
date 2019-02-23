@@ -1,10 +1,10 @@
 package com.sxk.service;
 
-import com.github.pagehelper.PageInfo;
 import com.sxk.dao.PictureRepository;
 import com.sxk.entity.Picture;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -29,15 +29,13 @@ public class PictureService {
     } else {
       page = dao.findByCategory(category, pageRequest);
     }
-    PageInfo pageInfo = new PageInfo(page.getContent());
-    pageInfo.getList();
-    System.out.println(pageInfo);
     return page;
   }
 
 
   public Picture getById(Integer id) {
-    return dao.findById(id).get();
+    Optional<Picture> optional = dao.findById(id);
+    return optional.isPresent() ? optional.get() : null;
   }
 
 

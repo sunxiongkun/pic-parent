@@ -1,0 +1,68 @@
+<head>
+  <meta charset="UTF-8"/>
+  <title>4K风景壁纸_高清4K风景图片</title>
+  <meta name="keywords" content="4k风景壁纸,高清4k风景壁纸,4k风景图片,4k风景电脑壁纸,4k风景桌面壁纸"/>
+  <meta name="description" content="免费提供清新唯美的4k风景图片壁纸下载,把高清的4k风景图片壁纸推荐给您,让您更快的找到您想要的4k风景壁纸图片"/>
+  <link href="/static/css/style.css" rel="stylesheet" type="text/css"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="referrer" content="no-referrer"/>
+  <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+  <script type="text/javascript" src="/static/js/common.js"></script>
+</head>
+<div class="header">
+  <div class="head">
+    <a href="/pic/page.html" class="logo" title="4k壁纸">首页</a>
+    <ul class="nav">
+      <li><a href="/pic/page/1/1.html" class="nav-link" rel="nofollow">最新</a></li>
+      <li><a href="javascript:;" class="nav-link">分类</a>
+        <div class="nav-m clearfix tran">
+          <a th:href="@{'/pic/page/'+${cate.code}+'/1.html'}"
+             th:each="cate :${categories}"
+             th:text="${cate.name}" th:class="${cate.code == category}? 'curr' :'' "></a>
+        </div>
+      </li>
+      <li><a href="javascript:;" class="nav-link">尺寸</a>
+        <div class="nav-m clearfix tran"><a
+            href="/pic/page/1/1.html?searchid=1224">4K壁纸</a><a
+            href="/pic/page/1/1.html?searchid=1224">3840x2160壁纸</a><a
+            href="/pic/page/1/1.html?searchid=2446">带鱼屏壁纸</a><a
+            href="/pic/page/1/1.html?searchid=2446">3440x1440壁纸</a><a
+            href="/pic/page/1/1.html?searchid=2453">5K壁纸</a><a
+            href="/pic/page/1/1.html?searchid=2453">5120x2880壁纸</a><a
+            href="/pic/page/1/1.html?searchid=2543">8K壁纸</a><a
+            href="/pic/page/1/1.html?searchid=2543">7680x4320壁纸</a><a
+            href="/pic/page/1/1.html">手机壁纸</a>
+          <a href="/pic/page/1/1.html?1920x1080" target="_blank">1920x1080壁纸</a></div>
+      </li>
+      <li><a href="/pic/page/1/1.html" class="nav-link pc-click">4K风景</a></li>
+      <li><a href="/pic/page/2/1.html" class="nav-link" rel="nofollow">4K背景</a></li>
+      <li><a href="http://pic.netbian.com/vip.html" class="nav-link" rel="nofollow"
+             style="color:#FFA800; target=_blank">1元会员</a></li>
+    </ul>
+    <div class="search">
+      <form action="/pic/page.html" method="post" name="schform" id="schform">
+        <p><input type="text" name="keyboard" value="请输入壁纸名称"
+                  onFocus="if(this.value=='请输入壁纸名称') this.value='';"
+                  onBlur="if(this.value=='') this.value='请输入壁纸名称';" autocomplete="off"/></p>
+        <input name="submit" type="submit" value="" class="sub"/><input name="tempid" type="hidden"
+                                                                        value="1"/><input
+          name="tbname" type="hidden" value="photo"/><input name="show" type="hidden"
+                                                            value="title"/>
+      </form>
+    </div>
+    <div class="loginbar">
+      <a class="register" style="width:100px;">注册</a> <a class="in">登录</a>
+      <div class="tbox">
+        <div class="close">×</div>
+        <a href="/" id="logo"></a>
+        <div id="tips">
+          <div class="hline fl"></div>
+          <div class="tiptext fl">欢迎您登陆4k网</div>
+          <div class="hline fr"></div>
+        </div>
+        <a href="/user/memberconnect/?apptype=qq" id="qq_register">QQ一键登陆</a>
+        <!--a href="/e/memberconnect/?apptype=weixin" id="weixin_register">微信扫一扫登录</a--></div>
+      <div id="login_opacity_bg"></div>
+    </div>
+  </div>
+</div>

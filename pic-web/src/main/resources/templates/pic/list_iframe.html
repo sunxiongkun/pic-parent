@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+  <meta charset="UTF-8"/>
+  <title>4K风景壁纸_高清4K风景图片</title>
+  <meta name="keywords" content="4k风景壁纸,高清4k风景壁纸,4k风景图片,4k风景电脑壁纸,4k风景桌面壁纸"/>
+  <meta name="description" content="免费提供清新唯美的4k风景图片壁纸下载,把高清的4k风景图片壁纸推荐给您,让您更快的找到您想要的4k风景壁纸图片"/>
+  <link href="/static/css/style.css" rel="stylesheet" type="text/css"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="referrer" content="no-referrer"/>
+  <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+  <script type="text/javascript" src="/static/js/common.js"></script>
+</head>
+<body>
+<!--public下的html文件可以直接访问localhsot:8080/static/head.html-->
+<iframe src="/static/head.html"
+        width="1200"
+        frameborder="0"
+        scrolling="0"
+></iframe>
+
+<div class="wrap clearfix">
+  <div id="main">
+    <div class="loaction"><span>当前位置：<a href="/">首页</a> > <h1
+        style="display: inline;font-weight: normal;">4K风景图片</h1></span></div>
+    <div class="classify clearfix">
+      <a th:href="@{'/pic/page/'+${cate.code}+'/1.html'}"
+         th:each="cate :${categories}"
+         th:text="${cate.name}" th:class="${cate.code == category}? 'curr' :'' "></a>
+    </div>
+    <div class="slist">
+      <ul class="clearfix">
+        <li th:each="pic : ${page.content}">
+          <a href="/tupian/22882.html" target="_blank">
+            <img th:src="${pic.netUrl +'?'+ new java.util.Date().getTime()}"
+                 th:alt="${pic.description}"/>
+            <b><span th:text="${pic.name}"/></b>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="page">
+      <!--<a class="allpage"><b th:text="'共 '+ ${page.pages}+ ' 页'"></b></a>
+      <a th:if="${page.hasPreviousPage} == true" th:href="@{'index?currentPage=' + ${page.prePage}}"  >上一页</a>
+      <a th:href="@{'index?currentPage=' + ${i}}"  th:each="i :${#numbers.sequence(page.startPage, page.endPage)}" th:text="${i}"  th:class="${page.pageNum == i}? 'curPage' :'' "></a>
+      <a th:href="@{'index?currentPage=' + ${page.nextPage}}" th:if="${page.hasNextPage} == true">下一页</a>
+      <a th:href="@{'index?currentPage='+ ${page.pages}}" >尾页</a>-->
+
+      <a th:href="@{/pic/page.html}">首页</a>
+      <a th:if="${not page.isFirst()}"
+         th:href="@{'/pic/page/'+${category==null?'':category}+'/'+${page.number-1}+'.html'}">上一页</a>
+      <!--<a th:href="@{'/pic/page/'+${i}+'.html'}"  th:each="i :${#numbers.sequence(page.startPage, page.endPage)}" th:text="${i}"  th:class="${page.number == i}? 'curPage' :'' "></a>-->
+      <b th:text="${page.number}"></b>
+      <span class="slh">…</span>
+      <a th:href="@{'/pic/page/'+${category==null?'':category}+'/'+${page.totalPages-1}+'.html'}"
+         th:text="${page.totalPages-1}"></a>
+      <a th:if="${not page.isLast()}"
+         th:href="@{'/pic/page/'+${category==null?'':category}+'/'+${page.number+1}+'.html'}">下一页</a>
+
+    </div>
+
+  </div>
+</div>
+
+<iframe src="/static/foot.html"
+        width="1200"
+        frameborder="0"
+        scrolling="0"
+></iframe>
+
+</body>
+</html>

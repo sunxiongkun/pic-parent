@@ -17,7 +17,7 @@
   <div class="head">
     <a href="/" class="logo" title="4k壁纸">首页</a>
     <ul class="nav">
-      <li><a href="@{/pic/page/1/1.html}" class="nav-link" rel="nofollow">最新</a></li>
+      <li><a href="/pic/page/1/1.html" class="nav-link" rel="nofollow">最新</a></li>
       <li><a href="javascript:;" class="nav-link">分类</a>
         <div class="nav-m clearfix tran">
           <a th:href="@{'/pic/page/'+${cate.code}+'/1.html'}"
@@ -27,21 +27,21 @@
       </li>
       <li><a href="javascript:;" class="nav-link">尺寸</a>
         <div class="nav-m clearfix tran"><a
-            href="@{/pic/page/1/1.html}?searchid=1224">4K壁纸</a><a
-            href="@{/pic/page/1/1.html}?searchid=1224">3840x2160壁纸</a><a
-            href="@{/pic/page/1/1.html}?searchid=2446">带鱼屏壁纸</a><a
-            href="@{/pic/page/1/1.html}?searchid=2446">3440x1440壁纸</a><a
-            href="@{/pic/page/1/1.html}?searchid=2453">5K壁纸</a><a
-            href="@{/pic/page/1/1.html}?searchid=2453">5120x2880壁纸</a><a
-            href="@{/pic/page/1/1.html}?searchid=2543">8K壁纸</a><a
-            href="@{/pic/page/1/1.html}?searchid=2543">7680x4320壁纸</a><a
-            href="@{/pic/page/1/1.html}">手机壁纸</a>
-          <a href="@{/pic/page/1/1.html}?1920x1080" target="_blank">1920x1080壁纸</a></div>
+            href="/pic/page/1/1.html?searchid=1224">4K壁纸</a><a
+            href="/pic/page/1/1.html?searchid=1224">3840x2160壁纸</a><a
+            href="/pic/page/1/1.html?searchid=2446">带鱼屏壁纸</a><a
+            href="/pic/page/1/1.html?searchid=2446">3440x1440壁纸</a><a
+            href="/pic/page/1/1.html?searchid=2453">5K壁纸</a><a
+            href="/pic/page/1/1.html?searchid=2453">5120x2880壁纸</a><a
+            href="/pic/page/1/1.html?searchid=2543">8K壁纸</a><a
+            href="/pic/page/1/1.html?searchid=2543">7680x4320壁纸</a><a
+            href="/pic/page/1/1.html">手机壁纸</a>
+          <a href="/pic/page/1/1.html?1920x1080" target="_blank">1920x1080壁纸</a></div>
       </li>
-      <li><a href="@{/pic/page/1/1.html}" class="nav-link pc-click">4K风景</a></li>
-      <li><a href="@{/pic/page/1/1.html}" class="nav-link" rel="nofollow">4K背景</a></li>
-      <li><a href="http://pic.netbian.com/vip.html" class="nav-link" rel="nofollow"
-             style="color:#FFA800; target=_blank">1元会员</a></li>
+      <li><a href="/pic/page/1/1.html" class="nav-link pc-click">4K风景</a></li>
+      <li><a href="/pic/page/2/1.html" class="nav-link" rel="nofollow">4K背景</a></li>
+      <li><!--<a href="http://pic.netbian.com/vip.html" class="nav-link" rel="nofollow"
+             style="color:#FFA800; target=_blank">1元会员</a>--></li>
     </ul>
     <div class="search">
       <form action="/pic/page.html" method="post" name="schform" id="schform">
@@ -74,7 +74,7 @@
 <div class="wrap clearfix">
   <div id="main">
     <div class="loaction"><span>当前位置：<a href="/">首页</a> > <h1
-        style="display: inline;font-weight: normal;">4K风景图片</h1></span></div>
+        style="display: inline;font-weight: normal;" th:text="${categoryInfo==null?'':categoryInfo.name}"></h1></span></div>
     <div class="classify clearfix">
       <a th:href="@{'/pic/page/'+${cate.code}+'/1.html'}"
          th:each="cate :${categories}"
@@ -83,8 +83,8 @@
     <div class="slist">
       <ul class="clearfix">
         <li th:each="pic : ${page.content}">
-          <a href="/tupian/22882.html" target="_blank">
-            <img th:src="${pic.netUrl +'?'+ new java.util.Date().getTime()}"
+          <a th:href="@{'/pic/info/'+${pic.id}+'.html'}" target="_blank">
+            <img th:src="${pic.netUrl}"
                  th:alt="${pic.description}"/>
             <b><span th:text="${pic.name}"/></b>
           </a>
@@ -98,25 +98,27 @@
       <a th:href="@{'index?currentPage=' + ${page.nextPage}}" th:if="${page.hasNextPage} == true">下一页</a>
       <a th:href="@{'index?currentPage='+ ${page.pages}}" >尾页</a>-->
 
-      <a th:href="@{/pic/page.html}">首页</a>
+      <a href="/pic/page.html">首页</a>
       <a th:if="${not page.isFirst()}"
-         th:href="@{'/pic/page/'+${category}+'/'+${page.number-1}+'.html'}">上一页</a>
+         th:href="@{'/pic/page/'+${category==null?'':category}+'/'+${page.number-1}+'.html'}">上一页</a>
       <!--<a th:href="@{'/pic/page/'+${i}+'.html'}"  th:each="i :${#numbers.sequence(page.startPage, page.endPage)}" th:text="${i}"  th:class="${page.number == i}? 'curPage' :'' "></a>-->
       <b th:text="${page.number}"></b>
+      <a th:if="${page.number + 5 < page.totalPages}"
+         th:href="@{'/pic/page/'+${category==null?'':category}+'/'+${i}+'.html'}"  th:each="i :${#numbers.sequence(page.number+1, page.number+5)}" th:text="${i}"></a>
       <span class="slh">…</span>
-      <a th:href="@{'/pic/page/'+${category}+'/'+${page.totalPages-1}+'.html'}"
+      <a th:href="@{'/pic/page/'+${category==null?'':category}+'/'+${page.totalPages-1}+'.html'}"
          th:text="${page.totalPages-1}"></a>
       <a th:if="${not page.isLast()}"
-         th:href="@{'/pic/page/'+${category}+'/'+${page.number+1}+'.html'}">下一页</a>
+         th:href="@{'/pic/page/'+${category==null?'':category}+'/'+${page.number+1}+'.html'}">下一页</a>
 
     </div>
 
   </div>
 </div>
 <div id="footer">
-  <div class="w"><p>为用户免费分享产生,若发现您的权利被侵害,我们尽快处理 客服QQ:55346968 <a target="_blank"
-                                                                 href="http://wpa.qq.com/msgrd?v=3&uin=55346968&site=qq&menu=yes"><img
-      border="0" src="http://wpa.qq.com/pa?p=2:55346968:51" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>（工作时间：9:00-23:00）4K壁纸QQ群（427389122）
+  <div class="w"><p>为用户免费分享产生,若发现您的权利被侵害,我们尽快处理 客服QQ:2580234545 <a target="_blank"
+                                                                 href="http://wpa.qq.com/msgrd?v=3&uin=2580234545&site=qq&menu=yes"><img
+      border="0" src="http://wpa.qq.com/pa?p=2:55346968:51" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>（工作时间：9:00-23:00）4K壁纸QQ群（2580234545）
   </p>
     <p>Copyright &copy; 2019 <span class="sitename"><a href="http://pic.netbian.com/" title=""></a></span>
       闽ICP备13013111号 <a href="http://www.netbian.com/" target="_blank" title="壁纸">壁纸</a> <a
