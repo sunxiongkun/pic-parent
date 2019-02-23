@@ -18,7 +18,7 @@ $(function() {
         var bodyheight = jQuery(document).height();
         $("#login_opacity_bg,.tbox").fadeIn(300);
         $("#login_opacity_bg").css("height", bodyheight);
-        $(".tiptext").text("欢迎您注册彼岸图网");
+        $(".tiptext").text("欢迎您注册砖块壁纸");
         $("#qq_register").text("QQ一键注册");
         $("#weixin_register").text("微信一键注册");
     });

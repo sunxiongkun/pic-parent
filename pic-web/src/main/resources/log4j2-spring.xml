@@ -48,7 +48,7 @@
   <!-- Mixed sync/async -->
   <Loggers>
 
-    <AsyncRoot level="debug" includeLocation="true">
+    <AsyncRoot level="info" includeLocation="true">
       <AppenderRef ref="console"/>
       <AppenderRef ref="infoFile"/>
     </AsyncRoot>

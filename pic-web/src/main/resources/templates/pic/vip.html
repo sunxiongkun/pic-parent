@@ -11,6 +11,13 @@
   <meta name="referrer" content="no-referrer"/>
   <script type="text/javascript" src="/static/js/jquery.min.js"></script>
   <script type="text/javascript" src="/static/js/common.js"></script>
+  <!--<script type="text/javascript"
+          src="http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion="></script>-->
+  <script>
+  document.write("<script type='text/javascript' src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=" + Date.now() + "'><\/script>");
+
+  </script>
+
 </head>
 <body>
 <div class="header">
@@ -42,8 +49,6 @@
       <li><a href="/pic/page/1/1.html" class="nav-link pc-click">4K壁纸</a></li>
       <li><a href="/pic/page/2/1.html" class="nav-link" rel="nofollow">8K壁纸</a></li>
       <li><a href="/pic/page/2/1.html" class="nav-link" rel="nofollow">手机壁纸</a></li>
-      <li><a href="/pic/vip.html" class="nav-link" rel="nofollow"
-             style="color:#FFA800; target=_blank">赞助会员</a></li>
     </ul>
     <div class="search">
       <form action="/pic/page.html" method="post" name="schform" id="schform">
@@ -76,50 +81,61 @@
 <div class="wrap clearfix">
   <div id="main">
     <div class="loaction"><span>当前位置：<a href="/">首页</a> > <h1
-        style="display: inline;font-weight: normal;" th:text="${categoryInfo==null?'':categoryInfo.name}"></h1></span></div>
-    <div class="classify clearfix">
-      <a th:href="@{'/pic/page/'+${cate.code}+'/1.html'}"
-         th:each="cate :${categories}"
-         th:text="${cate.name}" th:class="${cate.code == category}? 'curr' :'' "></a>
-    </div>
-    <div class="slist">
-      <ul class="clearfix">
-        <li th:each="pic : ${page.content}">
-          <a th:href="@{'/pic/info/'+${pic.id}+'.html'}" target="_blank">
-            <img th:src="@{'http://localhost/pic-web/img/'+${pic.category}+'/'+${pic.picUrl}}"
-                 th:alt="${pic.description}"/>
-            <b><span th:text="${pic.name}"/></b>
-          </a>
-        </li>
-      </ul>
-    </div>
-    <div class="page">
-      <!--<a class="allpage"><b th:text="'共 '+ ${page.pages}+ ' 页'"></b></a>
-      <a th:if="${page.hasPreviousPage} == true" th:href="@{'index?currentPage=' + ${page.prePage}}"  >上一页</a>
-      <a th:href="@{'index?currentPage=' + ${i}}"  th:each="i :${#numbers.sequence(page.startPage, page.endPage)}" th:text="${i}"  th:class="${page.pageNum == i}? 'curPage' :'' "></a>
-      <a th:href="@{'index?currentPage=' + ${page.nextPage}}" th:if="${page.hasNextPage} == true">下一页</a>
-      <a th:href="@{'index?currentPage='+ ${page.pages}}" >尾页</a>-->
+        style="display: inline;font-weight: normal;">加入会员</h1></span></div>
 
-      <a href="/pic/page.html">首页</a>
-      <a th:if="${not page.isFirst()}"
-         th:href="@{'/pic/page/'+${category==null?'':category}+'/'+${page.number-1}+'.html'}">上一页</a>
-      <!--<a th:href="@{'/pic/page/'+${i}+'.html'}"  th:each="i :${#numbers.sequence(page.startPage, page.endPage)}" th:text="${i}"  th:class="${page.number == i}? 'curPage' :'' "></a>-->
-      <b th:text="${page.number}"></b>
-      <a th:if="${page.number + 5 < page.totalPages}"
-         th:href="@{'/pic/page/'+${category==null?'':category}+'/'+${i}+'.html'}"  th:each="i :${#numbers.sequence(page.number+1, page.number+5)}" th:text="${i}"></a>
-      <span class="slh">…</span>
-      <a th:href="@{'/pic/page/'+${category==null?'':category}+'/'+${page.totalPages-1}+'.html'}"
-         th:text="${page.totalPages-1}"></a>
-      <a th:if="${not page.isLast()}"
-         th:href="@{'/pic/page/'+${category==null?'':category}+'/'+${page.number+1}+'.html'}">下一页</a>
-
+    <div id="main"><img src="/static/img/vip.jpg" alt="砖块壁纸会员特权">
+      <div class="member">
+        <div class="member-hd"><p><b>亲爱的，</b>游客</p></div>
+        <div class="content">
+          <div class="pay">
+            <div class="pay58_rmb"><a rel="nofollow" href="javascript:;"
+                                      class="pay58_rmb_num pay_select" data-type="3">
+              <div class="pay58_rmb_text"><span class="vip_shuxing">20元终身</span><span class="vip_text">终身会员 无限下载</span>
+              </div>
+              <div class="pay58_rmb_jiage"><span class="yuanjia">原价299元</span></div>
+              <div id="xianliang">最划算</div>
+              <div class="select_gou"></div>
+            </a><a rel="nofollow" href="javascript:;" class="pay58_rmb_num" data-type="2">
+              <div class="pay58_rmb_text"><span class="vip_shuxing">10元/年</span><span class="vip_text">VIP会员 每天限量10张</span>
+              </div>
+              <div class="pay58_rmb_jiage"><span class="yuanjia">原价99元</span></div>
+              <div class="select_gou" style="display:none;"></div>
+            </a><a rel="nofollow" href="javascript:;" class="pay58_rmb_num" data-type="1">
+              <div class="pay58_rmb_text"><span class="vip_shuxing">1元/月</span><span class="vip_text">VIP会员 每天限量10张</span>
+              </div>
+              <div class="pay58_rmb_jiage"><span class="yuanjia">原价9.9元</span></div>
+              <div id="xianliang" style="width: 75px;">体验型</div>
+              <div class="select_gou" style="display:none;"></div>
+            </a></div>
+            <br>
+            <div class="zz_way">
+              <div class="kthylc"><b>开通会员流程：支付费用→发送ID号给客服QQ→成功开通会员</b><span
+                  style="margin-right: 30px;color: #333;float: right;height: 25px;font-size: 12px;line-height: 25px;">开通会员客服QQ:2580234545<a
+                  rel="nofollow" target="_blank"
+                  href="http://wpa.qq.com/msgrd?v=3&uin=2580234545&site=qq&menu=yes"><img border="0"
+                                                                                          src="http://wpa.qq.com/pa?p=2:2580234545:51"
+                                                                                          alt="点击这里给我发消息"
+                                                                                          title="点击这里给我发消息"></a></span>
+              </div>
+              <div style="clear:both;"><img id="pay-img"
+                                            src="/static/img/pay20.jpg"
+                                            width="690"/>
+                <div style="float:right;width:435px;padding-right:30px;font-size:15px;"><p
+                    style="font-size:38px;color:#f00;">支付成功后，请联系客服</p>
+                  <p>如果您不联系客服，那我们只能认为您是一名默默无闻的雷锋了！</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+
 
   </div>
 </div>
 <div id="footer">
   <div class="w"><p>为用户免费分享产生,若发现您的权利被侵害,我们尽快处理 客服QQ:2580234545 <a target="_blank"
-                                                                 href="http://wpa.qq.com/msgrd?v=3&uin=2580234545&site=qq&menu=yes"><img
+                                                                   href="http://wpa.qq.com/msgrd?v=3&uin=2580234545&site=qq&menu=yes"><img
       border="0" src="http://wpa.qq.com/pa?p=2:2580234545:51" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>（工作时间：9:00-23:00）4K壁纸QQ群（2580234545）
   </p>
     <p>Copyright &copy; 2019 <span class="sitename"><a href="http://pic.netbian.com/" title=""></a></span>

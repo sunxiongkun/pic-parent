@@ -28,6 +28,12 @@ public class IndexController {
     return page(0, model);
   }
 
+  @GetMapping(value = {"/pic/vip.html"})
+  public String vip(Model model) {
+    model.addAttribute("categories", CategoryEnum.values());
+    return "pic/vip";
+  }
+
   @GetMapping("/pic/page/{number}.html")
   public String page(@PathVariable("number") Integer number, Model model) {
     return page(null, number, model);
@@ -52,6 +58,7 @@ public class IndexController {
     model.addAttribute("pic", pic);
     if (pic != null) {
       model.addAttribute("categoryInfo", CategoryEnum.of(pic.getCategory()));
+      model.addAttribute("categories", CategoryEnum.values());
     }
     return "pic/info";
   }
