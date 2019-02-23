@@ -11,12 +11,6 @@
   <meta name="referrer" content="no-referrer"/>
   <script type="text/javascript" src="/static/js/jquery.min.js"></script>
   <script type="text/javascript" src="/static/js/common.js"></script>
-  <!--<script type="text/javascript"
-          src="http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion="></script>-->
-  <script>
-  document.write("<script type='text/javascript' src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=" + Date.now() + "'><\/script>");
-
-  </script>
 
 </head>
 <body>
@@ -32,19 +26,6 @@
              th:text="${cate.name}" th:class="${cate.code == category}? 'curr' :'' "></a>
         </div>
       </li>
-      <!--<li><a href="javascript:;" class="nav-link">尺寸</a>
-        <div class="nav-m clearfix tran"><a
-            href="/pic/page/1/1.html?searchid=1224">4K壁纸</a><a
-            href="/pic/page/1/1.html?searchid=1224">3840x2160壁纸</a><a
-            href="/pic/page/1/1.html?searchid=2446">带鱼屏壁纸</a><a
-            href="/pic/page/1/1.html?searchid=2446">3440x1440壁纸</a><a
-            href="/pic/page/1/1.html?searchid=2453">5K壁纸</a><a
-            href="/pic/page/1/1.html?searchid=2453">5120x2880壁纸</a><a
-            href="/pic/page/1/1.html?searchid=2543">8K壁纸</a><a
-            href="/pic/page/1/1.html?searchid=2543">7680x4320壁纸</a><a
-            href="/pic/page/1/1.html">手机壁纸</a>
-          <a href="/pic/page/1/1.html?1920x1080" target="_blank">1920x1080壁纸</a></div>
-      </li>-->
       <li><a href="/pic/page/1/1.html" class="nav-link pc-click">1080P壁纸</a></li>
       <li><a href="/pic/page/1/1.html" class="nav-link pc-click">4K壁纸</a></li>
       <li><a href="/pic/page/2/1.html" class="nav-link" rel="nofollow">8K壁纸</a></li>
@@ -87,27 +68,27 @@
 
     <div class="photo">
       <div class="view">
-        <div class="photo-hd"><h1 th:text="${pic.name}"></h1></div>
-        <div class="photo-pic"><a href="" id="img">
-          <img th:src="@{'http://localhost/pic-web/img/'+${pic.category}+'/'+${pic.picUrl}}"
-               data-pic="@{'http://localhost/pic-web/img/'+${pic.category}+'/'+${pic.picUrl}}"
-               th:alt="${pic.description}"
-               th:title="${pic.name}"></a></div>
-        <div class="photo-txt">
-          砖块壁纸是全网最好的4K壁纸站，提供精美好看的4K高清壁纸免费下载，4K,5K,6K,7K,8K壁纸图片素材，
-          本作品:
-          <span th:text="${pic.description}"></span>，
-          壁纸来源网络和网友分享，图片版权归原作者所有，若有侵权问题敬请告知，我们会立即处理。客服QQ:2580234545
-        </div>
-        <div class="photo-tags">热门搜索：<a href="/pic/page/1/1.html?searchid=2252"
-                                        target="_blank">鬼刀壁纸</a> <a
-            href="/pic/page/1/1.html?searchid=25" target="_blank">星空壁纸</a> <a
-            href="/pic/page/1/1.html?searchid=2446" target="_blank">带鱼屏壁纸</a>
-          <a href="/pic/page/1/1.html?searchid=1224" target="_blank">4K壁纸</a>
-          <a href="/pic/page/1/1.html?searchid=2453" target="_blank">5K壁纸</a>
-          <a href="/pic/page/1/1.html?searchid=2543" target="_blank">8K壁纸</a>
-          <a href="/pic/page/1/1.html?searchid=377" target="_blank">手机壁纸</a>
-        </div>
+        <form class="form-horizontal" th:object="${user}" th:action="@{/user}" method="post">
+
+          <input type="hidden" th:field="*{id}"/>
+          <input type="text" class="form-control" th:field="*{description}"/>
+
+          <div class="photo-hd"><h1 th:text="${pic.name}"></h1></div>
+          <div class="photo-pic"><a href="" id="img">
+            <img th:src="@{'http://localhost/pic-web/img/'+${pic.category}+'/'+${pic.picUrl}}"
+                 data-pic="@{'http://localhost/pic-web/img/'+${pic.category}+'/'+${pic.picUrl}}"
+                 th:alt="${pic.description}"
+                 th:title="${pic.name}"></a></div>
+          <div class="photo-txt">
+            砖块壁纸是全网最好的4K壁纸站，提供精美好看的4K高清壁纸免费下载，4K,5K,6K,7K,8K壁纸图片素材，
+            本作品:
+            <span th:text="${pic.description}"></span>，
+            壁纸来源网络和网友分享，图片版权归原作者所有，若有侵权问题敬请告知，我们会立即处理。客服QQ:2580234545
+          </div>
+
+
+        </form>
+
       </div>
       <div class="side">
         <div class="downpic"><a href="javascript:;" th:data-id="${pic.id}">下载原图(3840x2160)</a></div>
@@ -117,34 +98,7 @@
           <!--<p>体积 <span>4.85 MB</span></p>-->
           <p>上传时间<span th:text="${pic.createTime}"></span></p>
         </div>
-        <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#"
-                                                                                          class="bds_qzone"
-                                                                                          data-cmd="qzone"
-                                                                                          title="分享到QQ空间"></a><a
-            href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#"
-                                                                               class="bds_weixin"
-                                                                               data-cmd="weixin"
-                                                                               title="分享到微信"></a><a
-            href="#" class="bds_huaban" data-cmd="huaban" title="分享到花瓣"></a></div>
-        <script>
-          window._bd_share_config = {
-    "common": {
-        "bdSnsKey": {},
-        "bdText": "",
-        "bdMini": "2",
-        "bdMiniList": ["mshare", "qzone", "tsina", "bdysc", "weixin", "renren", "tqq", "bdxc", "tieba", "douban", "bdhome", "sqq", "ibaidu", "huaban", "duitang", "copy"],
-        "bdPic": "",
-        "bdStyle": "0",
-        "bdSize": "32"
-    },
-    "share": {},
-    "image": {
-        "viewList": ["qzone", "tsina", "weixin", "huaban"],
-        "viewText": "分享到：",
-        "viewSize": "32"
-    }
-};
-        </script>
+
       </div>
     </div>
 

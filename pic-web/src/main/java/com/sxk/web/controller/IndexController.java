@@ -55,11 +55,13 @@ public class IndexController {
   @GetMapping("/pic/info/{id}.html")
   public String index(@PathVariable("id") Integer id, Model model) {
     Picture pic = pictureService.getById(id);
-    model.addAttribute("pic", pic);
     if (pic != null) {
+      model.addAttribute("pic", pic);
       model.addAttribute("categoryInfo", CategoryEnum.of(pic.getCategory()));
       model.addAttribute("categories", CategoryEnum.values());
+      return "pic/info";
+    } else {
+      return page(0, model);
     }
-    return "pic/info";
   }
 }
