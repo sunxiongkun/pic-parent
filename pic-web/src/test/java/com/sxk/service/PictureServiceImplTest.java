@@ -44,8 +44,8 @@ public class PictureServiceImplTest {
   @Before
   public void before() {
     for (CategoryEnum category : CategoryEnum.values()) {
-      String imgPath = "/www/img/" + category.getCode();
-      String htmlListPath = "/www/pic/" + category.getCode();
+      String imgPath = "D:/www/img/" + category.getCode();
+      String htmlListPath = "D:/www/pic/" + category.getCode();
       File imgDir = new File(imgPath);
       if (!imgDir.exists()) {
         imgDir.mkdirs();
@@ -144,7 +144,7 @@ public class PictureServiceImplTest {
         context.setVariable("categoryInfo", category);
         context.setVariable("categories", CategoryEnum.values());
         //渲染模板
-        FileWriter write = new FileWriter("/www/pic/" + category.getCode() + "/" + i + ".html");
+        FileWriter write = new FileWriter("D:/www/pic/" + category.getCode() + "/" + i + ".html");
         templateEngine.process("list", context, write);
       }
     }
@@ -167,7 +167,7 @@ public class PictureServiceImplTest {
     //构造上下文(Model)
     Context context = new Context();
     //WebContext context = new WebContext();
-    for (int i = 0; i < 10000; i++) {
+    for (int i = 0; i < 10; i++) {
       Picture pic = pictureService.getById(i);
       if (pic == null || pic.getCategory() == null) {
         continue;
@@ -178,7 +178,7 @@ public class PictureServiceImplTest {
       context.setVariable("pic", pic);
       context.setVariable("categoryInfo", CategoryEnum.of(pic.getCategory()));
       //渲染模板
-      FileWriter write = new FileWriter("/www/info/" + i + ".html");
+      FileWriter write = new FileWriter("D:/www/info/" + i + ".html");
       templateEngine.process("info", context, write);
     }
 
@@ -200,7 +200,7 @@ public class PictureServiceImplTest {
       if (!StringUtils.isEmpty(pic.getPicUrl())) {
         continue;
       }
-      rootPath = "/www/img/" + pic.getCategory();
+      rootPath = "D:/www/img/" + pic.getCategory();
       newImageName = System.currentTimeMillis() + ".jpg";
       newFilePath = rootPath + "/" + newImageName;
       File tempFile = HttpUtils.download(pic.getNetUrl());

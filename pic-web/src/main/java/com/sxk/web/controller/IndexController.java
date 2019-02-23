@@ -4,19 +4,28 @@ import com.sxk.constants.CategoryEnum;
 import com.sxk.entity.Picture;
 import com.sxk.service.PictureService;
 import com.sxk.service.UserService;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
+@Slf4j
 public class IndexController {
 
   @Autowired
@@ -81,9 +90,20 @@ public class IndexController {
     return "pic/info_update";
   }
 
+  @Value(value = "${pic.web.imageRootPath}")
+  private String imageRootPath;
+
   @PostMapping("/pic/info/update")
-  public String picUpdate(Picture pic, Model model) {
+  public String picUpdate(Picture pic, @RequestParam("photos") MultipartFile uploadImage,
+      Model model) {
+    log.info("pic:", pic);
+
     if (pic.getId() == null) {
+      String picUrl = upload(pic, uploadImage);
+      if (StringUtils.isEmpty(picUrl)) {
+        return picUpdatePage(pic, model);
+      }
+      pic.setPicUrl(picUrl);
       pictureService.saveOrUpdate(pic);
       return picUpdatePage(pic, model);
     }
@@ -97,13 +117,45 @@ public class IndexController {
     if (pic.getPicUrl() != null) {
       oldPic.setPicUrl(pic.getPicUrl());
     }
+
     if (pic.getKeyWord() != null) {
       oldPic.setKeyWord(pic.getKeyWord());
     }
     if (pic.getDescription() != null) {
       oldPic.setDescription(pic.getDescription());
     }
+
     pictureService.saveOrUpdate(oldPic);
     return picUpdatePage(oldPic, model);
   }
+
+  private String upload(Picture pic, MultipartFile uploadImage) {
+    if (null == uploadImage) {
+      return null;
+    }
+    File uploadImageDir = new File(imageRootPath + pic.getCategory());
+    if (!uploadImageDir.exists()) {
+      boolean success = uploadImageDir.mkdir();
+      if (success) {
+        System.out.println("文件夹创建成功");
+      } else {
+        System.out.println("文件夹创建失败");
+      }
+    }
+    String newName = System.currentTimeMillis() + ".jpg";
+    String newPath = imageRootPath + pic.getCategory() + "/" + newName;
+    if (!uploadImage.isEmpty()) {
+      try (BufferedOutputStream bs = new
+          BufferedOutputStream(new FileOutputStream(new File(newPath)));) {
+        byte[] bytes = uploadImage.getBytes();
+        bs.write(bytes);
+      } catch (Exception e) {
+        log.error("upload error");
+        return null;
+      }
+    }
+    return newName;
+  }
+
 }
+

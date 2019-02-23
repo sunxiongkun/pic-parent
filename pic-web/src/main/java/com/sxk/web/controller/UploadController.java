@@ -22,27 +22,27 @@ public class UploadController {
   @ResponseBody
   public RetMsg<String> uploadImage(HttpServletRequest request, MultipartFile uploadImage) {
     RetMsg<String> httpResponse = new RetMsg<>();
-    if (null != uploadImage) {
-      File uploadImageDir = new File(imageRootPath);
-      if (!uploadImageDir.exists()) {
-        boolean success = uploadImageDir.mkdir();
-        if (success) {
-          System.out.println("文件夹创建成功");
-        } else {
-          System.out.println("文件夹创建失败");
-        }
-      }
-      String newPath = imageRootPath + System.currentTimeMillis() + ".jpg";
-      if (!uploadImage.isEmpty()) {
-        try (BufferedOutputStream bs = new
-            BufferedOutputStream(new FileOutputStream(new File(newPath)));) {
-          byte[] bytes = uploadImage.getBytes();
-          bs.write(bytes);
-        } catch (Exception e) {
-
-        }
-      }
-    }
+//    if (null != uploadImage) {
+//      File uploadImageDir = new File(imageRootPath);
+//      if (!uploadImageDir.exists()) {
+//        boolean success = uploadImageDir.mkdir();
+//        if (success) {
+//          System.out.println("文件夹创建成功");
+//        } else {
+//          System.out.println("文件夹创建失败");
+//        }
+//      }
+//      String newPath = imageRootPath + System.currentTimeMillis() + ".jpg";
+//      if (!uploadImage.isEmpty()) {
+//        try (BufferedOutputStream bs = new
+//            BufferedOutputStream(new FileOutputStream(new File(newPath)));) {
+//          byte[] bytes = uploadImage.getBytes();
+//          bs.write(bytes);
+//        } catch (Exception e) {
+//
+//        }
+//      }
+//    }
     httpResponse.setCode(0);
     httpResponse.setData("");
     httpResponse.setMsg("图片上传失败");

@@ -36,8 +36,10 @@
     <div class="search">
       <form action="/pic/page.html" method="post" name="schform" id="schform">
         <p><input type="text" name="keyboard" value="请输入壁纸名称"
-                  onFocus="if(this.value=='请输入壁纸名称') this.value='';"
-                  onBlur="if(this.value=='') this.value='请输入壁纸名称';" autocomplete="off"/></p>
+                  onFocus="if(this.value=='请输入壁纸名称') {this.value='';
+}"
+                  onBlur="if(this.value=='') {this.value='请输入壁纸名称';
+}" autocomplete="off"/></p>
         <input name="submit" type="submit" value="" class="sub"/><input name="tempid" type="hidden"
                                                                         value="1"/><input
           name="tbname" type="hidden" value="photo"/><input name="show" type="hidden"
@@ -64,18 +66,32 @@
 <div class="wrap clearfix">
   <div id="main">
     <div class="loaction"><span>当前位置：<a href="/">首页</a> > <h1
-        style="display: inline;font-weight: normal;" th:text="${categoryInfo==null?'':categoryInfo.name}"></h1></span></div>
+        style="display: inline;font-weight: normal;"
+        th:text="${categoryInfo==null?'':categoryInfo.name}"></h1></span></div>
 
     <div class="photo">
       <div class="view">
-        <form class="form-horizontal" th:object="${pic}" th:action="@{/pic/info/update}" method="post">
+        <form class="form-horizontal" th:object="${pic}" th:action="@{/pic/info/update}"
+              enctype="multipart/form-data" method="post">
 
           <input type="hidden" th:field="*{id}"/>
-          分类：<input type="text" class="form-control" th:field="*{category}"/>
-          名称：<input type="text" class="form-control" th:field="*{name}"/>
+          <label>分类:</label>
+          <select class="form-control" th:field="*{category}">
+            <option
+                th:each="cate :${categories}" th:value="${cate.code}"
+                th:text="${cate.name}" th:selected="${cate.code == category}"></option>
+          </select>
+
+          <label>名称:</label><input type="text" class="form-control" th:field="*{name}"/>
           关键字：<input type="text" class="form-control" th:field="*{keyWord}"/>
           描述：<input type="text" class="form-control" th:field="*{description}"/>
-          描述：<input type="text" class="form-control" th:field="*{picUrl}"/>
+
+          <img th:src="@{'http://localhost/pic-web/img/'+${pic.category}+'/'+${pic.picUrl}}"
+               data-pic="@{'http://localhost/pic-web/img/'+${pic.category}+'/'+${pic.picUrl}}"
+               th:alt="${pic.description}"
+               th:title="${pic.name}">
+
+          <input type="file" name="photos"/>
 
           <div class="row">
             <button type="submit" class="btn btn-default">Submit</button>
@@ -83,14 +99,15 @@
         </form>
 
       </div>
-      <div class="side">
+     <!-- <div class="side">
         <div class="downpic"><a href="javascript:;" th:data-id="${pic.id}">下载原图(3840x2160)</a></div>
         <div class="infor">
-          <p>分类 <span> <a target="_blank" href="" th:text="${categoryInfo==null?'':categoryInfo.name}"></a> </span></p>
+          <p>分类 <span> <a target="_blank" href=""
+                          th:text="${categoryInfo==null?'':categoryInfo.name}"></a> </span></p>
           <p>尺寸<span>3840x2160</span></p>
-          <!--<p>体积 <span>4.85 MB</span></p>-->
+          &lt;!&ndash;<p>体积 <span>4.85 MB</span></p>&ndash;&gt;
           <p>上传时间<span th:text="${pic.createTime}"></span></p>
-        </div>
+        </div>-->
 
       </div>
     </div>
@@ -101,7 +118,8 @@
 <div id="footer">
   <div class="w"><p>为用户免费分享产生,若发现您的权利被侵害,我们尽快处理 客服QQ:2580234545 <a target="_blank"
                                                                    href="http://wpa.qq.com/msgrd?v=3&uin=2580234545&site=qq&menu=yes"><img
-      border="0" src="http://wpa.qq.com/pa?p=2:2580234545:51" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>（工作时间：9:00-23:00）4K壁纸QQ群（2580234545）
+      border="0" src="http://wpa.qq.com/pa?p=2:2580234545:51" alt="点击这里给我发消息"
+      title="点击这里给我发消息"/></a>（工作时间：9:00-23:00）4K壁纸QQ群（2580234545）
   </p>
     <p>Copyright &copy; 2019 <span class="sitename"><a href="http://pic.netbian.com/" title=""></a></span>
       闽ICP备13013111号 <a href="http://www.netbian.com/" target="_blank" title="壁纸">壁纸</a> <a
