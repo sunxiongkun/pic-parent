@@ -13,6 +13,35 @@
   <script type="text/javascript" src="/static/js/common.js"></script>
 
 </head>
+<style>
+ input{
+      border: 1px solid #ccc;
+      padding: 7px 0px;
+      border-radius: 3px;
+      padding-left:5px;
+      -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+      box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+      -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+      -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+      transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s
+  }
+input:focus{
+        border-color: #66afe9;
+        outline: 0;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)
+}
+.form-control{
+  width:600px;
+  }
+span {
+  word-wrap: break-word;
+  word-break: break-all;
+  white-space: pre-wrap !important;
+}
+
+
+</style>
 <body>
 <div class="header">
   <div class="head">
@@ -26,11 +55,11 @@
              th:text="${cate.name}" th:class="${cate.code == category}? 'curr' :'' "></a>
         </div>
       </li>
-      <li><a href="/pic/page/1/1.html" class="nav-link pc-click">1080P壁纸</a></li>
-      <li><a href="/pic/page/1/1.html" class="nav-link pc-click">4K壁纸</a></li>
-      <li><a href="/pic/page/2/1.html" class="nav-link" rel="nofollow">8K壁纸</a></li>
+      <li><a href="/pic/page/q/1/1.html" class="nav-link pc-click">1080P壁纸</a></li>
+      <li><a href="/pic/page/q/2/1.html" class="nav-link pc-click">4K壁纸</a></li>
+      <li><a href="/pic/page/q/3/1.html" class="nav-link" rel="nofollow">8K壁纸</a></li>
       <li><a href="/pic/page/2/1.html" class="nav-link" rel="nofollow">手机壁纸</a></li>
-      <li><a href="/pic/vip.html" class="nav-link" rel="nofollow"
+      <li><a href="/pic/page/vip.html" class="nav-link" rel="nofollow"
              style="color:#FFA800; target=_blank">赞助会员</a></li>
     </ul>
     <div class="search">
@@ -71,49 +100,79 @@
 
     <div class="photo">
       <div class="view">
-        <form class="form-horizontal" th:object="${pic}" th:action="@{/pic/info/update}"
+        <form class="form-horizontal" th:object="${pic}" th:action="@{/admin/info/update}"
               enctype="multipart/form-data" method="post">
-
+          <span>
+            <label>详情页面链接:</label>
+            <a th:href="@{'/pic/info/'+*{id}+'.html'}"
+               th:text="*{name}" target="_blank"></a>
+          </span>
           <input type="hidden" th:field="*{id}"/>
-          <label>分类:</label>
-          <select class="form-control" th:field="*{category}">
+          <span>
+            <label>分类:</label>
+            <select class="form-control" th:field="*{category}">
             <option
                 th:each="cate :${categories}" th:value="${cate.code}"
                 th:text="${cate.name}" th:selected="${cate.code == category}"></option>
           </select>
+          </span>
+          <span>
+            <label>质量:</label>
+            <select class="form-control" th:field="*{quality}">
+            <option
+                th:each="q :${qualities}" th:value="${q.code}"
+                th:text="${q.name}" ></option>
+          </select>
+          </span>
 
-          <label>名称:</label><input type="text" class="form-control" th:field="*{name}"/>
-          关键字：<input type="text" class="form-control" th:field="*{keyWord}"/>
-          描述：<input type="text" class="form-control" th:field="*{description}"/>
+          <span>
+            <label>名称:</label>
+            <input type="text" class="form-control" th:field="*{name}" required="required"/>
+          </span>
+          <span>
+          <label>关键字：</label>
+            <input type="text" class="form-control" th:field="*{keyWord}" required="required"/>
+          </span>
+          <span>
+            <label>分辨率：</label>
+            <input type="text" class="form-control" th:field="*{resolution}" required="required"/>
+          </span>
+          <span>
+            <label>网络地址：</label>
+            <input type="text" class="form-control" th:field="*{netUrl}"/>
+          </span>
+          <span>
+            <label>VIP下载地址：</label>
+            <input type="text" class="form-control" th:field="*{vipUrl}"/>
+          </span>
+          <span>
+            <label>描述：</label>
+            <input type="text" class="form-control" th:field="*{description}" required="required"/>
+          </span>
+          <span>
+            <label>上传：</label>
+            <input type="file" name="photos" />
+          </span>
+          <span>
+             <div class="row">
+            <button type="submit" class="btn btn-default">保存</button>
+          </div>
+          </span>
 
-          <img th:src="@{'http://localhost/pic-web/img/'+${pic.category}+'/'+${pic.picUrl}}"
-               data-pic="@{'http://localhost/pic-web/img/'+${pic.category}+'/'+${pic.picUrl}}"
+          <img th:src="@{'http://localhost/pic-web/img/'+${pic.picUrl}}"
+               data-pic="@{'http://localhost/pic-web/img/'+${pic.picUrl}}"
                th:alt="${pic.description}"
                th:title="${pic.name}">
 
-          <input type="file" name="photos"/>
-
-          <div class="row">
-            <button type="submit" class="btn btn-default">Submit</button>
-          </div>
         </form>
 
       </div>
-     <!-- <div class="side">
-        <div class="downpic"><a href="javascript:;" th:data-id="${pic.id}">下载原图(3840x2160)</a></div>
-        <div class="infor">
-          <p>分类 <span> <a target="_blank" href=""
-                          th:text="${categoryInfo==null?'':categoryInfo.name}"></a> </span></p>
-          <p>尺寸<span>3840x2160</span></p>
-          &lt;!&ndash;<p>体积 <span>4.85 MB</span></p>&ndash;&gt;
-          <p>上传时间<span th:text="${pic.createTime}"></span></p>
-        </div>-->
 
-      </div>
     </div>
-
-
   </div>
+
+
+</div>
 </div>
 <div id="footer">
   <div class="w"><p>为用户免费分享产生,若发现您的权利被侵害,我们尽快处理 客服QQ:2580234545 <a target="_blank"

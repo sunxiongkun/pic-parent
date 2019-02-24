@@ -32,24 +32,11 @@
              th:text="${cate.name}" th:class="${cate.code == category}? 'curr' :'' "></a>
         </div>
       </li>
-      <!--<li><a href="javascript:;" class="nav-link">尺寸</a>
-        <div class="nav-m clearfix tran"><a
-            href="/pic/page/1/1.html?searchid=1224">4K壁纸</a><a
-            href="/pic/page/1/1.html?searchid=1224">3840x2160壁纸</a><a
-            href="/pic/page/1/1.html?searchid=2446">带鱼屏壁纸</a><a
-            href="/pic/page/1/1.html?searchid=2446">3440x1440壁纸</a><a
-            href="/pic/page/1/1.html?searchid=2453">5K壁纸</a><a
-            href="/pic/page/1/1.html?searchid=2453">5120x2880壁纸</a><a
-            href="/pic/page/1/1.html?searchid=2543">8K壁纸</a><a
-            href="/pic/page/1/1.html?searchid=2543">7680x4320壁纸</a><a
-            href="/pic/page/1/1.html">手机壁纸</a>
-          <a href="/pic/page/1/1.html?1920x1080" target="_blank">1920x1080壁纸</a></div>
-      </li>-->
-      <li><a href="/pic/page/1/1.html" class="nav-link pc-click">1080P壁纸</a></li>
-      <li><a href="/pic/page/1/1.html" class="nav-link pc-click">4K壁纸</a></li>
-      <li><a href="/pic/page/2/1.html" class="nav-link" rel="nofollow">8K壁纸</a></li>
+      <li><a href="/pic/page/q/1/1.html" class="nav-link pc-click">1080P壁纸</a></li>
+      <li><a href="/pic/page/q/2/1.html" class="nav-link pc-click">4K壁纸</a></li>
+      <li><a href="/pic/page/q/3/1.html" class="nav-link" rel="nofollow">8K壁纸</a></li>
       <li><a href="/pic/page/2/1.html" class="nav-link" rel="nofollow">手机壁纸</a></li>
-      <li><a href="/pic/vip.html" class="nav-link" rel="nofollow"
+      <li><a href="/pic/page/vip.html" class="nav-link" rel="nofollow"
              style="color:#FFA800; target=_blank">赞助会员</a></li>
     </ul>
     <div class="search">
@@ -89,8 +76,8 @@
       <div class="view">
         <div class="photo-hd"><h1 th:text="${pic.name}"></h1></div>
         <div class="photo-pic"><a href="" id="img">
-          <img th:src="@{'http://localhost/pic-web/img/'+${pic.category}+'/'+${pic.picUrl}}"
-               data-pic="@{'http://localhost/pic-web/img/'+${pic.category}+'/'+${pic.picUrl}}"
+          <img th:src="@{'http://localhost/pic-web/img/'+${pic.picUrl}}"
+               data-pic="@{'http://localhost/pic-web/img/'+${pic.picUrl}}"
                th:alt="${pic.description}"
                th:title="${pic.name}"></a></div>
         <div class="photo-txt">
@@ -110,10 +97,10 @@
         </div>
       </div>
       <div class="side">
-        <div class="downpic"><a href="javascript:;" th:data-id="${pic.id}">下载原图(3840x2160)</a></div>
+        <div class="downpic"><a href="javascript:;" th:data-id="${pic.id}" th:text="${'下载原图('+pic.resolution+')'}"></a></div>
         <div class="infor">
           <p>分类 <span> <a target="_blank" href="" th:text="${categoryInfo==null?'':categoryInfo.name}"></a> </span></p>
-          <p>尺寸<span>3840x2160</span></p>
+          <p>尺寸<span th:text="${pic.resolution}">/span></p>
           <!--<p>体积 <span>4.85 MB</span></p>-->
           <p>上传时间<span th:text="${pic.createTime}"></span></p>
         </div>

@@ -39,6 +39,8 @@ spring:
         url: http://localhost:8080
 pic:
   web:
+    pageRootPath: D:/develop/proxy/nginx-1.8.0/html/pic/page/
+    infoRootPath: D:/develop/proxy/nginx-1.8.0/html/pic/info/
     imageRootPath: D:/develop/proxy/nginx-1.8.0/html/pic-web/img/
 
 ### spring actuator

@@ -14,4 +14,6 @@ public interface PictureRepository extends JpaRepository<Picture, Integer> {
 
   Page<Picture> findByCategory(Integer category, Pageable pageable);
 
+  Page<Picture> findByQuality(Integer quality, Pageable pageable);
+
 }

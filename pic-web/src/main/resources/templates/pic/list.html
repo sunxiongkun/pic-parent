@@ -38,11 +38,11 @@
             href="/pic/page/1/1.html">手机壁纸</a>
           <a href="/pic/page/1/1.html?1920x1080" target="_blank">1920x1080壁纸</a></div>
       </li>-->
-      <li><a href="/pic/page/1/1.html" class="nav-link pc-click">1080P壁纸</a></li>
-      <li><a href="/pic/page/1/1.html" class="nav-link pc-click">4K壁纸</a></li>
-      <li><a href="/pic/page/2/1.html" class="nav-link" rel="nofollow">8K壁纸</a></li>
+      <li><a href="/pic/page/q/1/1.html" class="nav-link pc-click">1080P壁纸</a></li>
+      <li><a href="/pic/page/q/2/1.html" class="nav-link pc-click">4K壁纸</a></li>
+      <li><a href="/pic/page/q/3/1.html" class="nav-link" rel="nofollow">8K壁纸</a></li>
       <li><a href="/pic/page/2/1.html" class="nav-link" rel="nofollow">手机壁纸</a></li>
-      <li><a href="/pic/vip.html" class="nav-link" rel="nofollow"
+      <li><a href="/pic/page/vip.html" class="nav-link" rel="nofollow"
              style="color:#FFA800; target=_blank">赞助会员</a></li>
     </ul>
     <div class="search">
@@ -86,7 +86,7 @@
       <ul class="clearfix">
         <li th:each="pic : ${page.content}">
           <a th:href="@{'/pic/info/'+${pic.id}+'.html'}" target="_blank">
-            <img th:src="@{'http://localhost/pic-web/img/'+${pic.category}+'/'+${pic.picUrl}}"
+            <img th:src="@{'http://localhost/pic-web/img/'+${pic.picUrl}}"
                  th:alt="${pic.description}"/>
             <b><span th:text="${pic.name}"/></b>
           </a>

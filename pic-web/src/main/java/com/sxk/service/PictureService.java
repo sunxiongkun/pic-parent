@@ -32,6 +32,9 @@ public class PictureService {
     return page;
   }
 
+  public Page<Picture> listByQuality(Integer quality, PageRequest pageRequest) {
+    return dao.findByQuality(quality, pageRequest);
+  }
 
   public Picture getById(Integer id) {
     Optional<Picture> optional = dao.findById(id);

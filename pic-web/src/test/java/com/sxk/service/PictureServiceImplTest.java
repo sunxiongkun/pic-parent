@@ -3,12 +3,14 @@ package com.sxk.service;
 import com.sxk.constants.CategoryEnum;
 import com.sxk.dao.PictureRepository;
 import com.sxk.entity.Picture;
+import com.sxk.thymeleaf.NoWebLinkBuilder;
 import com.sxk.util.HttpUtils;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -32,6 +34,7 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
+@Slf4j
 public class PictureServiceImplTest {
 
   static String imgUrl = "http://pic.netbian.com";
@@ -78,6 +81,19 @@ public class PictureServiceImplTest {
     pictureService.saveOrUpdate(picture);
     System.out.println(picture);
   }
+
+  @Test
+  public void updateAll() throws Exception {
+    for (int i = 0; i < 10000; i++) {
+      Picture pic = pictureService.getById(i);
+      if (pic != null && pic.getPicUrl() != null && pic.getPicUrl().indexOf("/") < 0) {
+        pic.setPicUrl(pic.getCategory() + "/" + pic.getPicUrl());
+        pictureService.saveOrUpdate(pic);
+        log.info("picInfo:{}", pic);
+      }
+    }
+  }
+
 
   @Test
   public void delete() {
