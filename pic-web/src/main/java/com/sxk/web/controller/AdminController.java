@@ -9,7 +9,7 @@ import com.sxk.vo.RetMsg;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
+import java.io.OutputStreamWriter;
 import javax.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +36,8 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 @Controller
 @RequestMapping(value = "/admin")
 public class AdminController {
+
+  public static String DEFAULT_CHARSET = "UTF-8";
 
   @Autowired
   private PictureService pictureService;
@@ -188,7 +190,8 @@ public class AdminController {
         context.setVariable("categories", CategoryEnum.values());
         //渲染模板
         String realPath = pageRootPath + category.getCode() + "/" + i + ".html";
-        try (FileWriter write = new FileWriter(realPath)) {
+        try (OutputStreamWriter write = new OutputStreamWriter(new FileOutputStream(realPath),
+            DEFAULT_CHARSET)) {
           templateEngine.process("list", context, write);
         } catch (Exception e) {
           log.error("create html error:{}", realPath);
@@ -217,11 +220,12 @@ public class AdminController {
         context.setVariable("quality", quality.getCode());
         context.setVariable("qualities", QualityEnum.values());
         //渲染模板
-        String realPath = pageRootPath + quality.getCode() + "/" + i + ".html";
-        try (FileWriter write = new FileWriter(realPath)) {
+        String realPath = pageRootPath + "q/" + quality.getCode() + "/" + i + ".html";
+        try (OutputStreamWriter write = new OutputStreamWriter(new FileOutputStream(realPath),
+            DEFAULT_CHARSET)) {
           templateEngine.process("list_quality", context, write);
         } catch (Exception e) {
-          log.error("create html error:{}", realPath);
+          log.error("create html error:" + realPath, e);
         }
       }
     }
@@ -235,8 +239,9 @@ public class AdminController {
     Context context = new Context();
     context.setVariable("categories", CategoryEnum.values());
     String realPath = pageRootPath + "vip.html";
-    try (FileWriter write = new FileWriter(realPath)) {
-      templateEngine.process("list", context, write);
+    try (OutputStreamWriter write = new OutputStreamWriter(new FileOutputStream(realPath),
+        DEFAULT_CHARSET)) {
+      templateEngine.process("vip", context, write);
     } catch (Exception e) {
       log.error("create html error:{}", realPath);
     }
@@ -260,7 +265,8 @@ public class AdminController {
       context.setVariable("categoryInfo", CategoryEnum.of(pic.getCategory()));
       //渲染模板
       String realPath = infoRootPath + id + ".html";
-      try (FileWriter write = new FileWriter(realPath)) {
+      try (OutputStreamWriter write = new OutputStreamWriter(new FileOutputStream(realPath),
+          DEFAULT_CHARSET)) {
         templateEngine.process("info", context, write);
       } catch (Exception e) {
         log.error("create html error:{}", realPath);

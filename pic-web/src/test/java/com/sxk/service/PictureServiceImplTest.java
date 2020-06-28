@@ -37,7 +37,7 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 @Slf4j
 public class PictureServiceImplTest {
 
-  static String imgUrl = "http://pic.netbian.com";
+  static String imgUrl = "http://pic.yituyiyu.com";
 
   @Autowired
   private PictureService pictureService;
@@ -75,8 +75,8 @@ public class PictureServiceImplTest {
   public void saveOrUpdate() {
     Picture picture = new Picture();
     picture.setName("幻想艺术 树风景4k壁纸");
-    picture.setPicUrl("http://pic.netbian.com/uploads/allimg/180717/101607-15317937671548.jpg");
-    picture.setVipUrl("http://pic.netbian.com/uploads/allimg/180717/101607-15317937671548.jpg");
+    picture.setPicUrl("http://pic.yituyiyu.com/uploads/allimg/180717/101607-15317937671548.jpg");
+    picture.setVipUrl("http://pic.yituyiyu.com/uploads/allimg/180717/101607-15317937671548.jpg");
     picture.setDescription("幻想艺术 树风景4k壁纸");
     pictureService.saveOrUpdate(picture);
     System.out.println(picture);
@@ -101,7 +101,7 @@ public class PictureServiceImplTest {
 
   @Test
   public void pullAllPic() {
-    String rootUrl = "http://pic.netbian.com/4kqiche/index_%d.html";
+    String rootUrl = "http://pic.yituyiyu.com/4kqiche/index_%d.html";
     int category = CategoryEnum.CAR.getCode();
     List<Picture> pictureList = new ArrayList<>();
     Date now = new Date();

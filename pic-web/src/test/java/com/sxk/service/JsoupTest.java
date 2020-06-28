@@ -11,8 +11,8 @@ import org.jsoup.select.Elements;
 
 public class JsoupTest {
 
-  static String rootUrl = "http://pic.netbian.com/4kfengjing/index_%d.html";
-  static String imgUrl = "http://pic.netbian.com";
+  static String rootUrl = "http://pic.yituyiyu.com/4kfengjing/index_%d.html";
+  static String imgUrl = "http://pic.yituyiyu.com";
 
   public static void main(String[] args) {
     List<Picture> pictureList = new ArrayList<>();

@@ -14,6 +14,13 @@
   <!--<script type="text/javascript"
           src="http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion="></script>-->
   <script>
+  var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?880ce4e7e215c05d7f858d644373f613";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
   document.write("<script type='text/javascript' src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=" + Date.now() + "'><\/script>");
 
   </script>
@@ -76,15 +83,15 @@
       <div class="view">
         <div class="photo-hd"><h1 th:text="${pic.name}"></h1></div>
         <div class="photo-pic"><a href="" id="img">
-          <img th:src="@{'http://localhost/pic-web/img/'+${pic.picUrl}}"
-               data-pic="@{'http://localhost/pic-web/img/'+${pic.picUrl}}"
+          <img th:src="@{'/pic-web/img/'+${pic.picUrl}}"
+               data-pic="@{'/pic-web/img/'+${pic.picUrl}}"
                th:alt="${pic.description}"
                th:title="${pic.name}"></a></div>
         <div class="photo-txt">
           砖块壁纸是全网最好的4K壁纸站，提供精美好看的4K高清壁纸免费下载，4K,5K,6K,7K,8K壁纸图片素材，
           本作品:
           <span th:text="${pic.description}"></span>，
-          壁纸来源网络和网友分享，图片版权归原作者所有，若有侵权问题敬请告知，我们会立即处理。客服QQ:2580234545
+          壁纸来源网络和网友分享，图片版权归原作者所有，若有侵权问题敬请告知，我们会立即处理。客服QQ:1871025980
         </div>
         <div class="photo-tags">热门搜索：<a href="/pic/page/1/1.html?searchid=2252"
                                         target="_blank">鬼刀壁纸</a> <a
@@ -139,16 +146,16 @@
   </div>
 </div>
 <div id="footer">
-  <div class="w"><p>为用户免费分享产生,若发现您的权利被侵害,我们尽快处理 客服QQ:2580234545 <a target="_blank"
-                                                                   href="http://wpa.qq.com/msgrd?v=3&uin=2580234545&site=qq&menu=yes"><img
-      border="0" src="http://wpa.qq.com/pa?p=2:2580234545:51" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>（工作时间：9:00-23:00）4K壁纸QQ群（2580234545）
+  <div class="w"><p>为用户免费分享产生,若发现您的权利被侵害,我们尽快处理 客服QQ:1871025980 <a target="_blank"
+                                                                   href="http://wpa.qq.com/msgrd?v=3&uin=1871025980&site=qq&menu=yes"><img
+      border="0" src="http://wpa.qq.com/pa?p=2:1871025980:51" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>（工作时间：9:00-23:00）4K壁纸QQ群（1871025980）
   </p>
-    <p>Copyright &copy; 2019 <span class="sitename"><a href="http://pic.netbian.com/" title=""></a></span>
-      闽ICP备13013111号 <a href="http://www.netbian.com/" target="_blank" title="壁纸">壁纸</a> <a
-          href="http://pic.netbian.com/" title="4k">4k</a> <a href="http://pic.netbian.com/"
+    <p>Copyright &copy; 2019 <span class="sitename"><a href="http://pic.yituyiyu.com/" title=""></a></span>
+      京ICP备15063423号 <a href="http://www.yituyiyu.com/" target="_blank" title="壁纸">壁纸</a> <a
+          href="http://pic.yituyiyu.com/" title="4k">4k</a> <a href="http://pic.yituyiyu.com/"
                                                               title="4k壁纸">4k壁纸</a> <a
-          href="http://pic.netbian.com/" target="_blank" title="壁纸">壁纸</a> <a
-          href="http://pic.netbian.com/" target="_blank" title="高清壁纸">高清壁纸</a> 关注:<a
+          href="http://pic.yituyiyu.com/" target="_blank" title="壁纸">壁纸</a> <a
+          href="http://pic.yituyiyu.com/" target="_blank" title="高清壁纸">高清壁纸</a> 关注:<a
           href="http://weibo.com/netbiancom" target="_blank">新浪微博</a>
     </p>
   </div>
